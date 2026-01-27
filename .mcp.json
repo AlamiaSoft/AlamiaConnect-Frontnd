@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "nextjs": {
+            "command": "npx",
+            "args": [
+                "next-devtools-mcp"
+            ],
+            "env": {
+                "NEXT_DEV_PORT": "3000"
+            }
+        }
+    }
+}
