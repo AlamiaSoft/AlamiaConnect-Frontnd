@@ -46,7 +46,7 @@ function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname()
   const router = useRouter()
   const { theme, setTheme } = useTheme()
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
 
   // Define navigation groups with explicit permissions
   const navigationGroups = [
