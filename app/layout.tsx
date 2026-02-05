@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/contexts/auth-context"
 import { SWRProvider } from "@/components/providers/swr-provider"
 import { LocationProvider } from "@/contexts/location-context"
+import { PersonaProvider } from "@/contexts/persona-context"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -42,11 +43,13 @@ export default function RootLayout({
       <body className={`font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="alamia-theme">
           <AuthProvider>
-            <LocationProvider>
-              <SWRProvider>
-                {children}
-              </SWRProvider>
-            </LocationProvider>
+            <PersonaProvider>
+              <LocationProvider>
+                <SWRProvider>
+                  {children}
+                </SWRProvider>
+              </LocationProvider>
+            </PersonaProvider>
           </AuthProvider>
         </ThemeProvider>
       </body>

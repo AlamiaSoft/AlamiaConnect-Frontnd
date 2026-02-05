@@ -34,6 +34,10 @@ import { cn } from "@/lib/utils"
 import { useAuth } from "@/hooks/use-auth"
 import { ProtectedRoute } from "@/components/auth/protected-route"
 import { useLocation } from "@/contexts/location-context"
+import { PersonaSwitcher } from "@/components/persona-switcher"
+import { usePersona } from "@/contexts/persona-context"
+import { VoiceFAB } from "@/components/voice-fab"
+import { ContextualAwareness } from "@/components/contextual-awareness"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -143,6 +147,11 @@ function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="flex h-16 items-center border-b border-sidebar-border px-4">
             {!sidebarCollapsed && <h1 className="text-lg font-semibold text-sidebar-foreground">Alamia Connect</h1>}
             {sidebarCollapsed && <span className="text-lg font-bold text-sidebar-foreground">AC</span>}
+          </div>
+
+          {/* Persona Switcher */}
+          <div className="p-3 border-b border-sidebar-border">
+            <PersonaSwitcher collapsed={sidebarCollapsed} />
           </div>
 
           {/* Navigation */}
@@ -317,6 +326,12 @@ function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
           </div>
         )}
+
+        {/* Contextual Awareness Layer */}
+        <ContextualAwareness />
+
+        {/* Voice Assistant FAB */}
+        <VoiceFAB />
       </div>
     </ProtectedRoute>
   )
