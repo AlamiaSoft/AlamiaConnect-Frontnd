@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import {
     Phone,
     Mail,
@@ -63,8 +64,8 @@ export function LeadsTable() {
             header: "Contact",
             className: "min-w-[200px]",
             render: (lead) => (
-                <div className="flex flex-col gap-1">
-                    <span className="font-medium">{lead.person?.name || lead.title || 'Untitled'}</span>
+                <Link href={`/leads/${lead.id}`} className="flex flex-col gap-1 group">
+                    <span className="font-medium group-hover:text-primary transition-colors">{lead.person?.name || lead.title || 'Untitled'}</span>
                     <div className="flex gap-2 text-xs text-muted-foreground">
                         {lead.phone && (
                             <span className="flex items-center gap-1">
@@ -79,7 +80,7 @@ export function LeadsTable() {
                             </span>
                         )}
                     </div>
-                </div>
+                </Link>
             )
         },
         {
@@ -162,13 +163,13 @@ export function LeadsTable() {
                 <CardContent className="p-4 flex flex-col h-full justify-between">
                     <div className="space-y-3">
                         <div className="flex items-start justify-between">
-                            <div>
-                                <h3 className="font-semibold text-lg">{lead.person?.name || lead.title || 'Untitled'}</h3>
+                            <Link href={`/leads/${lead.id}`} className="group">
+                                <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">{lead.person?.name || lead.title || 'Untitled'}</h3>
                                 <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
                                     <Briefcase className="h-3.5 w-3.5" />
                                     <span>{lead.organization?.name || 'N/A'}</span>
                                 </div>
-                            </div>
+                            </Link>
                             <Badge variant="secondary" className={getStatusColor(lead.stage?.name || lead.status)}>
                                 {lead.stage?.name || lead.status || 'New'}
                             </Badge>

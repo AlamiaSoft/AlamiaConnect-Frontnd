@@ -23,7 +23,7 @@ export function VoiceFAB() {
                 const simulatedInput = "Create a lead for a new warehouse installation"
                 setMessages(prev => [...prev, { role: 'user', content: simulatedInput }])
                 setIsListening(false)
-                
+
                 setIsLoading(true)
                 try {
                     const response = await aiService.getChatResponse(simulatedInput, currentPersona, messages)
@@ -40,13 +40,13 @@ export function VoiceFAB() {
     }
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 pointer-events-none">
             {/* Assistant Modal Window - Using Tailwind for transitions */}
             <div
                 className={cn(
                     "mb-2 w-96 max-h-[500px] flex flex-col rounded-2xl border bg-card p-4 shadow-2xl transition-all duration-300 origin-bottom-right transform",
                     isOpen
-                        ? "opacity-100 scale-100 translate-y-0 visible"
+                        ? "opacity-100 scale-100 translate-y-0 visible pointer-events-auto"
                         : "opacity-0 scale-95 translate-y-4 invisible pointer-events-none"
                 )}
             >
@@ -73,8 +73,8 @@ export function VoiceFAB() {
                         )}>
                             <div className={cn(
                                 "p-3 rounded-2xl",
-                                msg.role === 'user' 
-                                    ? "bg-primary text-primary-foreground rounded-tr-none" 
+                                msg.role === 'user'
+                                    ? "bg-primary text-primary-foreground rounded-tr-none"
                                     : "bg-muted rounded-tl-none"
                             )}>
                                 {msg.content}
@@ -108,18 +108,18 @@ export function VoiceFAB() {
             <Button
                 size="lg"
                 className={cn(
-                    "h-14 w-14 rounded-full shadow-2xl transition-all duration-300",
+                    "h-14 w-14 rounded-full shadow-2xl transition-all duration-300 pointer-events-auto",
                     isOpen ? "rotate-90 opacity-0 scale-0 invisible" : "scale-100 opacity-100 visible"
                 )}
                 onClick={toggleAssistant}
             >
                 <div className="relative">
-                   <MessageSquare className="h-6 w-6" />
-                   {messages.length > 0 && !isOpen && (
-                       <span className="absolute -top-3 -right-3 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
-                           {messages.length}
-                       </span>
-                   )}
+                    <MessageSquare className="h-6 w-6" />
+                    {messages.length > 0 && !isOpen && (
+                        <span className="absolute -top-3 -right-3 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                            {messages.length}
+                        </span>
+                    )}
                 </div>
             </Button>
         </div>

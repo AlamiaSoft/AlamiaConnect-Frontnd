@@ -126,4 +126,17 @@ export class LeadsService extends BaseService {
             return this.handleError(error);
         }
     }
+
+    /**
+     * Get leads grouped by stages for Kanban view
+     */
+    static async getLeadsGroups(pipelineId?: number | string) {
+        try {
+            const url = pipelineId ? `${this.ENDPOINT}/get/${pipelineId}` : `${this.ENDPOINT}/get`;
+            // This endpoint returns a custom structure, not standard JSON:API
+            return await this.getSingle<any>(url);
+        } catch (error) {
+            return this.handleError(error);
+        }
+    }
 }
