@@ -6,6 +6,7 @@ import { AuthProvider } from "@/contexts/auth-context"
 import { SWRProvider } from "@/components/providers/swr-provider"
 import { LocationProvider } from "@/contexts/location-context"
 import { PersonaProvider } from "@/contexts/persona-context"
+import { BillingBanner } from "@/components/billing-banner"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -43,6 +44,7 @@ export default function RootLayout({
             <PersonaProvider>
               <LocationProvider>
                 <SWRProvider>
+                  <BillingBanner />
                   {children}
                 </SWRProvider>
               </LocationProvider>
